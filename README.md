@@ -1,4 +1,6 @@
-***Unofficial CyanogenMod port***
+Still Work In Progress
+
+**Unofficial CyanogenMod port***
 
 Device configuration for HTC One M8s.
 =====================================
