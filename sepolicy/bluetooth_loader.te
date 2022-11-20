@@ -1,0 +1,2 @@
+# Allow hci_qcom_init access bt address file
+allow bluetooth_loader sysfs_bluetooth_writable:file r_file_perms;

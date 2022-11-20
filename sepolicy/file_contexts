@@ -1,0 +1,53 @@
+# Audio
+/dev/htc-acoustic                                                                     u:object_r:audio_device:s0
+/dev/rt5501                                                                           u:object_r:audio_device:s0
+/dev/tfa9887                                                                          u:object_r:audio_device:s0
+/dev/tfa9887l                                                                         u:object_r:audio_device:s0
+
+# Debugfiles
+/sys/kernel/debug/rmt_storage(/.*)?                                                   u:object_r:rmt_storage_debug_file:s0
+
+# Diag
+/dev/htc_diag                                                                         u:object_r:diag_device:s0
+
+# Gesture
+/sys/devices/virtual/htc_sensorhub/sensor_hub/gesture_motion                          u:object_r:sysfs_gesture:s0
+
+# rild qcril.db
+/carrier(/.*)?                                                                        u:object_r:qcril_file:s0
+
+# Radio
+/dev/radio                                                                            u:object_r:qcril_device:s0
+
+# Camera device
+/dev/AIT0                                                                             u:object_r:camera_device_file:s0
+
+# Camera calibration files
+/sys/android_camera_awb_cal(/.*)?                                                     u:object_r:camera_cal_sysfs:s0
+
+# Heaps
+/sys/kernel/debug/ion/heaps/system                                                    u:object_r:debugfs_heaps_system:s0
+
+# BT Address file
+/sys/module/htc_bdaddress/parameters/bdaddress                                        u:object_r:sysfs_bluetooth_writable:s0
+
+# Flash light file
+/sys/devices/soc.0/78b8000.i2c/i2c-4/4-0033/leds/flashlight(/.*)?                     u:object_r:sysfs_flashlight:s0
+
+# Leds sysfs file
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-0032/leds/indicator/ModeRGB                    u:object_r:sysfs_leds:s0
+
+# Modem partitions
+/dev/block/platform/soc.0/7824900.sdhci/by-name/cdma_record                           u:object_r:modem_efs_partition_device:s0
+/dev/block/platform/soc.0/7824900.sdhci/by-name/modem_st1                             u:object_r:modem_efs_partition_device:s0
+/dev/block/platform/soc.0/7824900.sdhci/by-name/modem_st2                             u:object_r:modem_efs_partition_device:s0
+/dev/block/platform/soc.0/7824900.sdhci/by-name/rfg_[0-9]*                            u:object_r:modem_efs_partition_device:s0
+
+# HALs
+/system/vendor/bin/hw/android\.hardware\.light@2\.0-service\.m8qlul                   u:object_r:hal_light_default_exec:s0
+/system/vendor/bin/hw/android\.hardware\.usb@1\.0-service\.m8qlul                     u:object_r:hal_usb_default_exec:s0
+
+# Vendor blobs
+/system/vendor/bin/hcheck-v2                                                          u:object_r:wv-prov_exec:s0
+/system/vendor/bin/hci_qcomm_init                                                     u:object_r:bluetooth_loader_exec:s0
+/system/vendor/bin/init.qcom.mem.sh                                                   u:object_r:qti_init_shell_exec:s0

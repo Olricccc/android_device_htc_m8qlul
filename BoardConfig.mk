@@ -1,0 +1,234 @@
+# Copyright (C) 2015 The CyanogenMod Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#BOARD_VENDOR := htc
+DEVICE_PATH := device/htc/m8qlul
+
+TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
+
+#BUILD WITH OVERRIDING COMMANDS ERROR FIX
+#BUILD_BROKEN_DUP_RULES := true
+
+# Assertions
+TARGET_OTA_ASSERT_DEVICE := htc_m8qlul
+TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
+
+# Architecture
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := cortex-a53
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a53
+
+TARGET_BOARD_SUFFIX := _64
+#TARGET_USES_64_BIT_BINDER := true
+TARGET_BOARD_PLATFORM := msm8916
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno405
+
+# Bluetooth
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := MSM8916
+TARGET_NO_BOOTLOADER := true
+
+# ANT+
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
+
+# Audio
+AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := false
+AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
+AUDIO_FEATURE_ENABLED_EXTN_POST_PROC := true
+AUDIO_FEATURE_ENABLED_FLUENCE := true
+AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
+AUDIO_FEATURE_ENABLED_HFP := true
+AUDIO_FEATURE_ENABLED_HWDEP_CAL := true
+AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_ENABLED_NEW_SAMPLE_RATE := true
+AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
+AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+BOARD_USES_ALSA_AUDIO := true
+USE_CUSTOM_AUDIO_POLICY := 1
+
+# Camera
+USE_DEVICE_SPECIFIC_CAMERA := true
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
+BOARD_GLOBAL_CFLAGS += -DPROPERTY_PERMS_APPEND='{"htc.camera.sensor.", AID_CAMERA, 0}, {"camera.4k2k.", AID_MEDIA, 0},'
+TARGET_NEEDS_LEGACY_CAMERA_HAL1_DYN_NATIVE_HANDLE := true
+
+
+# Crypto
+TARGET_HW_DISK_ENCRYPTION := true
+TARGET_LEGACY_HW_DISK_ENCRYPTION := true
+TARGET_KEYMASTER_WAIT_FOR_QSEE := true	
+
+# Display
+TARGET_USES_ION := true
+USE_OPENGL_RENDERER := true
+OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x02000000U
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+
+# Dexopt
+ifeq ($(HOST_OS),linux)
+  ifeq ($(WITH_DEXPREOPT),)
+    WITH_DEXPREOPT := true
+	WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
+  endif
+endif
+
+# Extended filesystem support
+TARGET_EXFAT_DRIVER := sdfat
+
+# Filesystem
+BOARD_FLASH_BLOCK_SIZE             := 131072
+BOARD_BOOTIMAGE_PARTITION_SIZE     := 33554432    # 0x002000000
+BOARD_CACHEIMAGE_PARTITION_SIZE    := 268435456   # 0x010000000
+BOARD_PERSISTIMAGE_PARTITION_SIZE  := 262144      # 0x000040000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432    # 0x002000000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 4294967296  # 0x100000000
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 10334748672 # 0x268000000 ~ 10334765056 - 16384
+TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
+
+# Fonts
+EXTENDED_FONT_FOOTPRINT := true
+
+# GPS
+TARGET_GPS_HAL_PATH := $(DEVICE_PATH)/gps
+
+# HIDL
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
+DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
+
+# Init
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+
+
+# Kernel
+BOARD_CUSTOM_BOOTIMG_MK := $(DEVICE_PATH)/mkbootimg.mk
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01f88000 --tags_offset 0x01d88000
+BOARD_DTBTOOL_ARGS := --dt-tag "htc,project-id = <"
+BOARD_KERNEL_IMAGE_NAME := Image
+BOARD_KERNEL_SEPARATED_DT := true
+LZMA_RAMDISK_TARGETS := recovery
+TARGET_KERNEL_CONFIG := m8qlul_vz_defconfig
+BOARD_KERNEL_BASE := 0x80078000
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 boot_cpus=0-7 androidtouch.htc_event=1 disk_mode_enable=1
+BOARD_KERNEL_PAGESIZE := 2048
+BOARD_KERNEL_TAGS_OFFSET := 0x01d88000
+BOARD_RAMDISK_OFFSET := 0x01f88000
+
+TARGET_KERNEL_SOURCE := kernel/htc/msm8939
+
+
+# Lights
+TARGET_PROVIDES_LIBLIGHT := true
+
+# Lineage Hardware
+BOARD_HARDWARE_CLASS += \
+    $(DEVICE_PATH)/lineagehw
+
+# NFC
+BOARD_NFC_CHIPSET := pn547
+BOARD_NFC_HAL_SUFFIX := msm8916
+
+# Offmode Charging
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
+
+
+# Power
+TARGET_USES_INTERACTION_BOOST := true
+TARGET_POWERHAL_SET_INTERACTIVE_EXT := $(DEVICE_PATH)/power/power_ext.c
+
+# Properties
+TARGET_SYSTEM_PROP += \
+    $(DEVICE_PATH)/ril.prop
+
+# Qualcomm support
+BOARD_USES_QCOM_HARDWARE := true
+
+# Shims
+TARGET_LD_SHIM_LIBS := /system/lib64/libhtc_rilhook.so|libshim_ril.so:/system/vendor/lib64/libizat_core.so|libshim_izat.so
+
+# TWRP
+ifeq ($(WITH_TWRP),true)
+RECOVERY_VARIANT := twrp
+TW_THEME := portrait_hdpi
+TW_NO_REBOOT_BOOTLOADER := true
+TW_NO_REBOOT_RECOVERY := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/recovery.fstab
+TW_NEW_ION_HEAP := true
+TW_TARGET_USES_QCOM_BSP := true
+TW_INCLUDE_CRYPTO := true
+TARGET_RECOVERY_DEVICE_MODULES += chargeled
+endif
+
+# Recovery
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_RECOVERY_SWIPE := true
+#BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+TARGET_RECOVERY_DENSITY := xxhdpi
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+
+# Releasetools
+TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)/releasetools
+
+# RIL
+TARGET_RIL_VARIANT := caf
+
+# SELinux
+include device/qcom/sepolicy-legacy/sepolicy.mk
+
+BOARD_SEPOLICY_DIRS += \
+    $(DEVICE_PATH)/sepolicy
+
+# Video
+TARGET_HAVE_SIGNED_VENUS_FW := true
+
+# Vold
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/file
+
+# Wifi
+BOARD_HAS_QCOM_WLAN := true
+
+BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
+
+BOARD_WLAN_DEVICE := qcwcn
+
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
+TARGET_USES_QCOM_WCNSS_QMI := true
+TARGET_USES_WCNSS_CTRL := true
+WIFI_DRIVER_FW_PATH_AP := "ap"
+WIFI_DRIVER_FW_PATH_STA := "sta"
+
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+
+# Inherit from the proprietary version
+-include vendor/htc/m8qlul/BoardConfigVendor.mk

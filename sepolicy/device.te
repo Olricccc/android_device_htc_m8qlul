@@ -1,0 +1,2 @@
+type qcril_device, dev_type;
+type camera_device_file, dev_type;

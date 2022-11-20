@@ -1,0 +1,8 @@
+allow init { domain -lmkd -crash_dump }:process noatsecure;
+
+allow init debugfs:dir { mounton };
+allow init debugfs_rmt:dir relabelfrom;
+allow init debugfs_rmt:file relabelfrom;
+
+# Allow init mount /sys/fs/pstore
+allow init pstorefs:dir mounton;
